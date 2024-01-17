@@ -1,23 +1,27 @@
-#include "Application.h"
+#include "Core.h"
 #define WIN32_LEAN_AND_MEAN 
 #include <windows.h>
-#include <stdexcept>
+#include <thread>
+#include <chrono>
 
+bool bWork = true;
+
+void onKeyDown(int key)
+{
+    if (key == 256) {
+        bWork = false;
+    }
+}
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)
 {
-    Application app;
-
-    try
-    {
-        if (app.init()) {
-            app.run();
+    if (Core::init(1024, 768, 8)) {
+        Core::setKeyDownCallback(onKeyDown);
+        while (bWork)
+        {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
         }
     }
-    catch (const std::exception& ex) {
-        app.showError(ex.what());
-    }
 
-    app.free();
     return 0;
 }
