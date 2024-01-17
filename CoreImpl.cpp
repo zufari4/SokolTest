@@ -17,13 +17,15 @@ namespace Core
     CoreImpl::CoreImpl()
         : isInit_{false}
         , initDone_{false}
+        , isClean_{true}
     {
 
     }
 
     CoreImpl::~CoreImpl()
     {
-
+        mainThread_.join();
+        cleanupCallback();
     }
 
     void CoreImpl::initCallback()
@@ -84,10 +86,15 @@ namespace Core
             isInit_ = false;
         }
         initDone_ = true;
+        isClean_ = false;
     }
 
     void CoreImpl::eventCallback(const sapp_event* event)
     {
+        if (event->type == sapp_event_type::SAPP_EVENTTYPE_QUIT_REQUESTED && closeAppCb_) {
+            closeAppCb_();
+            return;
+        }
         simgui_handle_event(event);
         if (event->type == sapp_event_type::SAPP_EVENTTYPE_KEY_DOWN && keyDownCb_) {
             keyDownCb_((int)event->key_code);
@@ -134,10 +141,12 @@ namespace Core
 
     void CoreImpl::cleanupCallback()
     {
-        simgui_shutdown();
-        sgp_shutdown();
-        sg_shutdown();
-        //if (closeAppCb_) closeAppCb_();
+        if (!isClean_) {
+            simgui_shutdown();
+            sgp_shutdown();
+            sg_shutdown();
+            isClean_ = true;
+        }
     }
 
     void CoreImpl::setKeyDownCallback(KeyDownCallback cb)
@@ -180,6 +189,11 @@ namespace Core
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         return isInit_;
+    }
+
+    void CoreImpl::requestQuit()
+    {
+        sapp_request_quit();
     }
 }
 

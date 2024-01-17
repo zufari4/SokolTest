@@ -28,6 +28,8 @@ namespace Core
         ~CoreImpl();
 
         bool init(const InitParams& params);
+        void requestQuit();
+
         void initCallback();
         void eventCallback(const sapp_event* event);
         void frameCallback();
@@ -40,6 +42,7 @@ namespace Core
     private:
         std::atomic_bool isInit_;
         std::atomic_bool initDone_;
+        std::atomic_bool isClean_;
         std::thread mainThread_;
         KeyDownCallback keyDownCb_;
         SimpleCallback  closeAppCb_;

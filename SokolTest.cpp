@@ -22,7 +22,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 {
     if (Core::init(1024, 768, 8)) {
         Core::setKeyDownCallback(onKeyDown);
-        //Core::setCloseAppCallback(onAppClose);
+        Core::setCloseAppCallback(onAppClose);
 
         while (bWork)
         {
@@ -30,5 +30,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         }
     }
 
+    Core::free();
     return 0;
 }
