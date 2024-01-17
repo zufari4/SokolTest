@@ -1,2 +1,11 @@
 /.vs
-/x64
+/x64/Debug/*.obj
+/x64/Debug/*.exe
+/x64/Debug/*.recipe
+/x64/Debug/*.ilk
+/x64/Debug/SokolTest.log
+/x64/Debug/*.pdb
+/x64/Debug/SokolTest.tlog/*.tlog
+/x64/Debug/SokolTest.tlog/*.lastbuildstate
+/x64/Debug/*.txt
+/x64/Debug/*.idb
