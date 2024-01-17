@@ -9,6 +9,7 @@ struct sapp_event;
 namespace Core
 {
     using KeyDownCallback = std::function<void(int)>;
+    using SimpleCallback = std::function<void(void)>;
 
     typedef struct InitParams {
         void (*init_cb)(void); 
@@ -33,13 +34,15 @@ namespace Core
         void cleanupCallback();
 
         void setKeyDownCallback(KeyDownCallback cb);
+        void setCloseAppCallback(SimpleCallback cb);
         void showError(const std::string& msg);
 
     private:
-        KeyDownCallback keyDownCb_;
-        std::thread mainThread_;
         std::atomic_bool isInit_;
         std::atomic_bool initDone_;
+        std::thread mainThread_;
+        KeyDownCallback keyDownCb_;
+        SimpleCallback  closeAppCb_;
     };
 }
 

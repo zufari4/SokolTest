@@ -137,11 +137,17 @@ namespace Core
         simgui_shutdown();
         sgp_shutdown();
         sg_shutdown();
+        //if (closeAppCb_) closeAppCb_();
     }
 
     void CoreImpl::setKeyDownCallback(KeyDownCallback cb)
     {
         keyDownCb_ = cb;
+    }
+
+    void CoreImpl::setCloseAppCallback(SimpleCallback cb)
+    {
+        closeAppCb_ = cb;
     }
 
     void CoreImpl::showError(const std::string& msg)

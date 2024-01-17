@@ -28,6 +28,11 @@ namespace Core
         core_.setKeyDownCallback(cb);
     }
 
+    void setCloseAppCallback(SimpleCallback cb)
+    {
+        core_.setCloseAppCallback(cb);
+    }
+
     void showError(const std::string& msg)
     {
         core_.showError(msg);

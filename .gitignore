@@ -9,3 +9,13 @@
 /x64/Debug/SokolTest.tlog/*.lastbuildstate
 /x64/Debug/*.txt
 /x64/Debug/*.idb
+/x64/Release/*.obj
+/x64/Release/*.exe
+/x64/Release/*.recipe
+/x64/Release/*.iobj
+/x64/Release/*.ipdb
+/x64/Release/SokolTest.log
+/x64/Release/*.pdb
+/x64/Release/SokolTest.tlog/*.tlog
+/x64/Release/SokolTest.tlog/*.lastbuildstate
+/x64/Release/*.txt
