@@ -1,6 +1,6 @@
 #pragma once
+#include "CoreCallbacks.h"
 #include <thread>
-#include <functional>
 #include <atomic>
 #include <memory>
 
@@ -8,9 +8,6 @@ struct sapp_event;
 
 namespace Core
 {
-    using KeyDownCallback = std::function<void(int)>;
-    using SimpleCallback = std::function<void(void)>;
-
     typedef struct InitParams {
         void (*init_cb)(void); 
         void (*frame_cb)(void);
@@ -28,7 +25,7 @@ namespace Core
         ~CoreImpl();
 
         bool init(const InitParams& params);
-        void requestQuit();
+        void free();
 
         void initCallback();
         void eventCallback(const sapp_event* event);

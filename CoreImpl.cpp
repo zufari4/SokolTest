@@ -24,8 +24,6 @@ namespace Core
 
     CoreImpl::~CoreImpl()
     {
-        mainThread_.join();
-        cleanupCallback();
     }
 
     void CoreImpl::initCallback()
@@ -191,9 +189,11 @@ namespace Core
         return isInit_;
     }
 
-    void CoreImpl::requestQuit()
+    void CoreImpl::free()
     {
         sapp_request_quit();
+        mainThread_.join();
+        cleanupCallback();
     }
 }
 

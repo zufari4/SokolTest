@@ -32,5 +32,8 @@
     <ClInclude Include="CoreImpl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CoreCallbacks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
