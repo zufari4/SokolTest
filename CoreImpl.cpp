@@ -177,9 +177,11 @@ namespace Core
         desc.frame_cb = params.frame_cb;
         desc.event_cb = params.event_cb;
         desc.cleanup_cb = params.cleanup_cb;
+        desc.fullscreen = params.fullscreen;
         desc.width  = params.windowWidth;
         desc.height = params.windowHeight;
         desc.sample_count = params.sampleCount;
+        desc.swap_interval = 1; /*params.useVsync*/
 
         mainThread_ = std::thread(sokolMainThread, std::ref(desc));
 

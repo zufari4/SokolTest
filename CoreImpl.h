@@ -13,9 +13,11 @@ namespace Core
         void (*frame_cb)(void);
         void (*cleanup_cb)(void);
         void (*event_cb)(const sapp_event*);
+        bool fullscreen;
         int windowWidth;
         int windowHeight;
         int sampleCount;
+        bool useVsync;
     } InitParams;
 
     class CoreImpl

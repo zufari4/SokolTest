@@ -10,16 +10,18 @@ namespace Core
     void frame_cb();
     void cleanup_cb();
 
-    bool init(int windowWidth, int windowHeight, int sampleCount)
+    bool init(bool fullscreen, int windowWidth, int windowHeight, int sampleCount, bool useVsync)
     {
         InitParams params;
         params.init_cb    = init_cb;
         params.event_cb   = event_cb;
         params.frame_cb   = frame_cb;
         params.cleanup_cb = cleanup_cb;
+        params.fullscreen = fullscreen;
         params.windowWidth  = windowWidth;
         params.windowHeight = windowHeight;
         params.sampleCount  = sampleCount;
+        params.useVsync = useVsync;
 
         return core_.init(params);
     }
